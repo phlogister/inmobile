@@ -1,55 +1,60 @@
-<head>
-  <title>inmobile</title>
-</head>
-
-<body>
-  <h1>Welcome to iNmobile!</h1>
-
-  <div class="ui segment">
-    <div class="sixteen wide column">
-      <h1 class="ui dividing header">
-        <i class="compass outline icon"></i>WAKAAAA
-      </h1>
-      <div class="ui hidden divider"></div>
-    </div>
-  </div>
-
-  {{> tclientes}}
-  {{> tpisos}}
-</body>
-
-<template name="tclientes">
-  <h3>Clientes</h3>
-  <ul>{{#each mostrar}} 
-    <li class="cliente {{selectedClass}}">{{waka}}: </li>
-    {{/each}}
-    <button class="editcli">Editar cliente</button>
-    <button class="delcli">Borrar cliente</button>
-  </ul>
-  <button class="addcli">Añadir cliente</button>
-
-</template>
-
-<template name="tpisos">
-  <h3>Pisos</h3>
-  <button>Soy Ralph</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-
-<!--default templates-->
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
-</template>
+<!-- <template name="main"> -->
+    <head>
+        <title>iNmobile</title>
+      </head>
+    
+      <body>
+        <!-- <i class="home icon big"></i><b style="font-size: 28px; text-align:center;" > Welcome to iNmobile!</b> -->
+        <div class="ui stackable container menu">
+            
+        </div>
+        <div class="ui segment">
+          <div class="sixteen wide column">
+            <h1 class="ui dividing header">
+              <i class="home icon"></i>Main menu
+            </h1>
+            <!-- <div class="ui hidden divider"></div> -->
+          </div>
+        </div>
+    
+        {{> tclientes}}
+        {{> tpisos}}
+      </body>
+    <!-- </template> -->
+    
+    <template name="tclientes"> 
+      <h3>Clientes</h3>
+      <ul>{{#each mostrar}} 
+        <li class="cliente {{selectedClass}}">{{waka}}: </li>
+        {{/each}}
+        <button class="editcli">Editar cliente</button>
+        <button class="delcli">Borrar cliente</button>
+      </ul>
+      <button class="addcli">Añadir cliente</button>
+    
+    </template>
+    
+    <template name="tpisos">
+      <h3>Pisos</h3>
+      <button>Soy Ralph</button>
+      <p>You've pressed the button {{counter}} times.</p>
+    </template>
+    
+    
+    <!--default templates-->
+    
+    <!-- <template name="hello"> 
+      <button>Click Me</button>
+      <p>You've pressed the button {{counter}} times.</p>
+    </template>
+    
+    <template name="info">
+      <h2>Learn Meteor!</h2>
+      <ul>
+        <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+        <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+        <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+        <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+      </ul>
+    </template>
+    -->
