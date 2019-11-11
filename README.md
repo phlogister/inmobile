@@ -5,7 +5,7 @@
 - meteor add clinical:router -> var current = Iron.Location.get();
   > https://github.com/clinical-meteor/router
   > http://iron-meteor.github.io/iron-router/
-- semantic:ui
+- semantic:ui (meteor integration)
 - tap:i18n
 - tap:i18n-db
 - tap:i18n-ui
@@ -35,6 +35,7 @@
 ## 2. Módulos
 - Semantic UI
   > https://medium.com/codebagng/getting-started-with-semantic-ui-framework-c5c34070fafc
+  > https://github.com/mdehoog/Semantic-UI-Calendar
 -----------------------------------------------------------------
 ## 3. Despliegue
 + Kubernetes

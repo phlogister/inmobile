@@ -1,5 +1,7 @@
 export const Pisos = new Mongo.Collection('pisos');
 export const Clientes = new Mongo.Collection('clientes');
+//export const Usuarios = new Mongo.Collection('usuarios');
+
 
 //Clientes: Nombre, Apellidos, teléfono(/s), DNI/wtever, comprador=t|f, vendedor=t|f, ¿¿global=t|f??, ..., notas
 // \-> Añadir, Editar, Eliminar
