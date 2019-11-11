@@ -1,0 +1,161 @@
+{
+  //"MongoDB": "mongodb://etraid:Etra-3000@gridsol.lab.id:27017/rb?authSource=admin",
+  "public": 
+  {
+    "Layer": "Gridsol",
+    "MapOrigin": [40.415363, -3.707398],
+    "origen": [0.0, 0.0],
+  },
+  "App": 
+  {
+    "Title": "",
+    "Version": "0.1.0",
+    "Logo": "/images/aska_640x640.jpg",
+    //"LogoSmall": "/images/logoetraid.png",
+    //"LogoAbout": "/images/logo_cecovi.jpg",
+    //"LogoEtra": "/images/logoetra.png",
+    //"splashImg": "/images/logoetraid.png",
+    "Copyright": "2019 Secuware",
+    "Desc": "",
+    //"DescLong": "Helios for Renewables<br/><br/>etra-icons library<br/>- etra-substation based on \"Electricity station\" by Remco Homberg from the Noun Project<br/>- etra-windmill and etra-wind-plant based on \"Wind Turbine\" by Rockicon from the Noun Project<br/>- etra-solar-panel and etra-solar-plant based on \"solar\" by Andrejs Kirma from the Noun Project<br/>- etra-hydro-pump and etra-hydro-plant based on \"Hydropower\" by Georgiana Ionescu from the Noun Project<br/>- etra-biomass-unit and etra-biomass-plant based on \"biomass\" by Jean Yashu from the Noun Project<br/>- etra-thermometer based on \"Thermometer\" by Timo Wagner from the Noun Project",
+    //"BigBackground": "/images/parque.jpg",
+    "ExcludeMenuSections": "home,documentation,web management,help",
+    "DefaultLanguage": "es",
+    "ShowLanguageMenu": true,
+    //"sounds": ["/sounds/alarm.mp3","/sounds/Fire_pager.mp3","/sounds/WoopWoop.mp3"],
+    "Menu": [      
+      {
+        "linkName": "Resumen",
+        "route": "dashboard",
+        "icon": "dashboard",
+        "path": "/",
+        "order": 1,
+        "permission": "dashboard",
+        "layout": "mainLayoutFullPage",
+        "waitOnFunc": "waitDashboard"
+      },
+        {
+          "linkName": "srh",
+          "order": 6,
+          "name":"srh",
+          "route": "/srh/:id",
+          "permission": "main",
+          "layout": "mainLayoutFullPage",
+          "waitOnFunc": "waitSRH",
+          "noMenu": "true"
+        },
+        {
+          "linkName": "Srh",
+          "id": "linkSrh",
+          "icon": "compass",
+          "order": 10,
+          "permission": "main",
+          "subitems":
+          [
+            {
+              "linkName": "storagePlant",
+              "route": "/srh/:id/storagePlant/:idBateria",
+              "name": "storagePlant",
+              "order": 111,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitSP",
+              "data":"funcSP"
+            },
+            {
+              "linkName": "photovoltaicPanel",
+              "route": "/srh/:id/photovoltaicPanel/:idPanel",
+              "name": "photovoltaicPanel",
+              "order": 112,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitPV",
+              "data":"funcPV"
+            },
+          ]
+        },
+      {
+        "linkName": "Configuración",
+        "route": "config",
+        "icon": "wrench",
+        "order": 15,
+        "permission": "dashboard",
+        "layout": "mainLayoutFullPage"
+      },
+    ]
+  },
+  "permissions": 
+  [
+    {
+      "group": "Sections",
+      "permissions":
+      [
+        {
+          "name": "main",
+          "descrip": "Principal",
+          "values": [
+            {
+              "access": "read"
+            }
+          ]
+        },
+        {
+          "name": "eventos",
+          "descrip": "Eventos",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "user_management",
+          "descrip": "Gestión de usuarios",
+          "values":
+          [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "profile_management",
+          "descrip": "Gestión de perfiles",
+          "values":
+          [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Collections",
+      "permissions": 
+      [
+        {
+          "name": "collection_HeliosR_dashboard",
+          "descrip": "Dashboard",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+      ]
+    },
+  ],
+}

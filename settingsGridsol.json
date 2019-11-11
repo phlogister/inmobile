@@ -1,0 +1,611 @@
+{
+  "MongoDB": "mongodb://etraid:Etra-3000@gridsol.lab.id:27017/rb?authSource=admin",
+  "mssqlOld": {
+    "main": {
+      "connection": "mssql://sa:Etra-3000@gridsol.lab.id/CECOVI"
+    },
+    "events": {
+      "connection":
+        "mssql://sa:Etra-3000@gridsol.lab.id/CECOVI_Events?parseJSON=true"
+    },
+    "data": {
+      "connection":
+        "mssql://sa:Etra-3000@gridsol.lab.id/CECOVI_Data?parseJSON=true"
+    },
+    "eventsjson": {
+      "server": "172.25.0.55",
+      "database": "CECOVI_Events",
+      "user": "sa",
+      "password": "Etra-3000",
+      "connectionTimeout": 50000,
+      "requestTimeout ": 50000,
+      "parseJSON": true
+    }
+  },
+  "private":{
+    "InfluxDBURL": "http://gridsol.lab.id:8086/Gridsol",
+    "defaultDataDriver": "influx"
+  },
+  "public": {
+    "RB": "http://gridsol.lab.id:3000",
+    "RBLogin": true,
+    "Layer": "Gridsol",
+    "MapOrigin": [40.415363, -3.707398],
+    "origen": [0.0, 0.0],
+    "reporting": {
+      "url": "http://172.25.0.55:80/SSRSGateway/VisorInformes.aspx"
+    },
+    "App": {
+      "Title": "",
+      "Version": "0.1.0",
+      "Logo": "/images/logo_cecovi_small.jpg",
+      "LogoSmall": "/images/logoetraid.png",
+      "LogoAbout": "/images/logo_cecovi.jpg",
+      "LogoEtra": "/images/logoetra.png",
+      "splashImg": "/images/logoetraid.png",
+      "Copyright": "2017 ETRA I+D",
+      "Desc": "",
+      "DescLong": "Helios for Renewables<br/><br/>etra-icons library<br/>- etra-substation based on \"Electricity station\" by Remco Homberg from the Noun Project<br/>- etra-windmill and etra-wind-plant based on \"Wind Turbine\" by Rockicon from the Noun Project<br/>- etra-solar-panel and etra-solar-plant based on \"solar\" by Andrejs Kirma from the Noun Project<br/>- etra-hydro-pump and etra-hydro-plant based on \"Hydropower\" by Georgiana Ionescu from the Noun Project<br/>- etra-biomass-unit and etra-biomass-plant based on \"biomass\" by Jean Yashu from the Noun Project<br/>- etra-thermometer based on \"Thermometer\" by Timo Wagner from the Noun Project",
+      "BigBackground": "/images/parque.jpg",
+      "ExcludeMenuSections": "home,documentation,web management,help",
+      "DefaultLanguage": "es",
+      "ShowLanguageMenu": true,
+      "sounds": ["/sounds/alarm.mp3","/sounds/Fire_pager.mp3","/sounds/WoopWoop.mp3"],
+      "Menu": [      
+        {
+          "linkName": "Resumen",
+          "route": "dashboard",
+          "icon": "dashboard",
+          "path": "/",
+          "order": 1,
+          "permission": "dashboard",
+          "layout": "mainLayoutFullPage",
+          "waitOnFunc": "waitDashboard"
+        },
+          {
+            "linkName": "srh",
+            "order": 6,
+            "name":"srh",
+            "route": "/srh/:id",
+            "permission": "main",
+            "layout": "mainLayoutFullPage",
+            "waitOnFunc": "waitSRH",
+            "noMenu": "true"
+          },
+          {
+            "linkName": "Srh",
+            "id": "linkSrh",
+            "icon": "compass",
+            "order": 10,
+            "permission": "main",
+          "subitems": [
+            {
+              "linkName": "storagePlant",
+              "route": "/srh/:id/storagePlant/:idBateria",
+              "name": "storagePlant",
+              "order": 111,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitSP",
+              "data":"funcSP"
+            },
+            {
+              "linkName": "photovoltaicPanel",
+              "route": "/srh/:id/photovoltaicPanel/:idPanel",
+              "name": "photovoltaicPanel",
+              "order": 112,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitPV",
+              "data":"funcPV"
+            },
+            {
+              "linkName": "pointOfCoupling",
+              "route": "/srh/:id/pointOfCoupling/:idFarm",
+              "name": "pointOfCoupling",
+              "order": 113,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitPCC",
+              "data":"funcPCC"
+            },
+            {
+              "linkName": "turbine",
+              "route": "/srh/:id/turbine/:idTurbine",
+              "name": "turbine",
+              "order": 114,
+              "permission": "estructuras",
+              "noMenu": true,
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitTurbine",
+              "data":"funcTurbine"
+            }
+          ]
+        },
+        {
+          "linkName": "Configuración",
+          "route": "config",
+          "icon": "wrench",
+          "order": 15,
+          "permission": "dashboard",
+          "layout": "mainLayoutFullPage"
+        },
+        {
+          "linkName": "Consignas",
+          "icon": "announcement",
+          "order": 20,
+          "permission": "consignas",
+          "layout": "mainLayoutFullPage",
+          "subitems": [
+            {
+              "linkName": "ConsignasActiva",
+              "route": "consignasActiva",
+              "icon": "announcement",
+              "order": 2021,
+              "permission": "consignas",
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitConsignasActiva"
+            },
+            {
+              "linkName": "ConsignasReactiva",
+              "route": "consignasReactiva",
+              "icon": "announcement",
+              "order": 2022,
+              "permission": "consignas",
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitConsignasReactiva"
+            },
+            {
+              "linkName": "Descargos",
+              "route": "descargos",
+              "icon": "wrench",
+              "order": 2023,
+              "permission": "consignas",
+              "layout": "mainLayoutFullPage",
+              "waitOnFunc": "waitDescargos"
+            }
+          ]
+        },
+        {
+          "linkName": "Mercado",
+          "route": "market",
+          "icon": "money bill alternate",
+          "order": 50,
+          "permission": "dashboard",
+          "layout": "mainLayoutFullPage",
+          "waitOnFunc": "waitMarket"
+        },
+        {
+          "linkName": "Predicciones",
+          "route": "forecasts",
+          "icon": "clock",
+          "order": 51,
+          "permission": "dashboard",
+          "layout": "mainLayoutFullPage"
+        },
+        {
+          "linkName": "Analiticas",
+          "route": "analytics",
+          "icon": "gem",
+          "order": 52,
+          "permission": "dashboard",
+          "layout": "mainLayoutFullPage"
+        },
+        {
+          "linkName": "Gestión de la web",
+          "route": "",
+          "path": "",
+          "icon": "",
+          "order": 60,
+          "permission": "user_management",
+          "subitems": [
+            {
+              "linkName": "Clientes",
+              "route": "clientes",
+              "icon": "star",
+              "order": 6000,
+              "permission": "user_management",
+              "waitOnFunc": "waitClientes",
+              "subitems": []
+            },
+            {
+              "linkName": "users",
+              "route": "users",
+              "path": "",
+              "icon": "users",
+              "order": 6001,
+              "permission": "user_management1",
+              "layout": "mainLayoutFullPage",
+              "subitems": []
+            },
+            {
+              "linkName": "profiles",
+              "route": "profiles",
+              "path": "",
+              "icon": "puzzle",
+              "permission": "profile_management1",
+              "layout": "mainLayoutFullPage",
+              "order": 6002,
+              "subitems": []
+            },
+            {
+              "linkName": "Parques gestionados",
+              "route": "visibleParks",
+              "path": "",
+              "icon": "send outline",
+              "order": 6003,
+              "permission": "user_management",
+              "waitOnFunc": "waitParks",
+              "layout": "mainLayoutFullPage",
+              "subitems": []
+            },
+            {
+              "linkName": "Acerca de..",
+              "id": "openAbout",
+              "icon": "copyright",
+              "order": 1007,
+              "subitems": []
+            }
+          ]
+        }
+      ]
+    },
+    "Messages": {
+      "effect": "stackslide",
+      "position": "top-right",
+      "timeout": "5000"
+    },
+    "SessionLogout": {
+      "Enabled": false,
+      "InactivityTimeout": 900000,
+      "PurgeInterval": 120000,
+      "SessionTimeoutQuery": {}
+    },
+    "trail": {
+      "monitor": false,
+      "monitor_console": {
+        "show": true,
+        "large": false
+      },
+      "monitors": [
+        {
+          "name": "Server + Client",
+          "options": {
+            "limit": 400
+          }
+        }
+      ],
+      "type": "mongo",
+      "options": {
+        "level": "ERROR",
+        "collection": "error_log"
+      }
+    }
+  },
+  "permissions": [
+    {
+      "group": "Sections",
+      "permissions": [
+        {
+          "name": "dashboard",
+          "descrip": "Resumen",
+          "values": [
+            {
+              "access": "read"
+            }
+          ]
+        },
+        {
+          "name": "main",
+          "descrip": "Principal",
+          "values": [
+            {
+              "access": "read"
+            }
+          ]
+        },
+        {
+          "name": "monitor_manager",
+          "descrip": "SysMon",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "consignas",
+          "descrip": "Consignas",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "descargos",
+          "descrip": "Descargos",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "eventos",
+          "descrip": "Eventos",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "estructuras",
+          "descrip": "Estructuras",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "informes",
+          "descrip": "Informes",
+          "values": [
+            {
+              "access": "read"
+            }
+          ]
+        },
+        {
+          "name": "user_management",
+          "descrip": "Gestión de usuarios",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        },
+        {
+          "name": "profile_management",
+          "descrip": "Gestión de perfiles",
+          "values": [
+            {
+              "access": "read"
+            },
+            {
+              "access": "write"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Collections",
+      "permissions": [
+        {
+          "name": "collection_HeliosR_dashboard",
+          "descrip": "Dashboard",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_alarmasActuales",
+          "descrip": "Alarms",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "HeliosR_actuaciones",
+          "descrip": "Action",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+       {
+          "name": "collection_HeliosR_consignas",
+          "descrip": "Consignas",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_consignasReactiva",
+          "descrip": "ConsignasReactiva",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_descargos",
+          "descrip": "Descargos",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_grupos",
+          "descrip": "Grupos",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_sistemas",
+          "descrip": "Sistemas",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_modelos",
+          "descrip": "Modelos",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_sets",
+          "descrip": "SETs",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_elementosSet",
+          "descrip": "Elementos SET",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_ordenes",
+          "descrip": "Órdenes",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_parques",
+          "descrip": "Parques",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_renovables",
+          "descrip": "Renovables",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_meteos",
+          "descrip": "Meteos",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_contadores",
+          "descrip": "Contadores",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_HeliosR_REE_comunicacion",
+          "descrip": "REE Comunicación",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_SysMonitor_procesos",
+          "descrip": "SysMonitor Procesos",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_SysMonitor_subsistemas",
+          "descrip": "SysMonitor Subsistemas",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        },
+        {
+          "name": "collection_SysMonitor_hosts",
+          "descrip": "SysMonitor Hosts",
+          "values": [
+            { "access": "write" },
+            { "access": "private" },
+            { "access": "protected" },
+            { "access": "public" }
+          ]
+        }
+      ]
+    }
+  ]
+}
