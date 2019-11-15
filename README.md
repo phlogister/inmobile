@@ -2,10 +2,10 @@
 -----------------------------------------------------------------
 ## 1. .meteor/packages
 ### Incluir:
-- meteor add clinical:router -> var current = Iron.Location.get();
++ meteor add clinical:router -> var current = Iron.Location.get();
   > https://github.com/clinical-meteor/router
   > http://iron-meteor.github.io/iron-router/
-- semantic:ui (meteor integration)
++ semantic:ui (meteor integration)
 - tap:i18n
 - tap:i18n-db
 - tap:i18n-ui

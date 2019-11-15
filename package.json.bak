@@ -11,6 +11,14 @@
     "@babel/runtime": "^7.3.4",
     "meteor-node-stubs": "^0.4.1"
   },
+  "meteor": {
+    "mainModule": {
+      "client": "client/main.js",
+      "server": "server/main.js",
+      "routes": "client/lib/routes.js"
+    },
+    "testModule": "tests/main.js"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "postcss": "^6.0.23",
