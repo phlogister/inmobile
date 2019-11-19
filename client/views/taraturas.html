@@ -1,4 +1,4 @@
-<template name="main">
+<template name="taraturas">
   <head>
       <title>{{title}}</title>
   </head>
@@ -11,21 +11,20 @@
     <!-- <i class="home icon big"></i><b style="font-size: 28px; text-align:center;" > Welcome to iNmobile!</b> -->
   <body>
     {{> menu}}
-    <!-- {{#if currentUser}}   -->
+    <!-- {{#if currentUser}} -->
     <div class="ui segment">
       <div class="sixteen wide column">
         <h1 class="ui dividing header">
-          <i class="user icon"></i> Datos de cuenta
+          <i class="home icon"></i> Taraturas
           <!-- {{_ "Menú principal"}} -->
         </h1>
         <!-- <div class="ui hidden divider"></div> -->
         <div class="ui center aligned grid">
           <div class="eight wide column">
-              <h2>Usuario: </h2><h3>{{mostrar}}</h3>
-              <!-- {{> tclientes}} -->
+              {{> tclientes3}}
           </div>
           <div class="eight wide column">
-              <!-- {{> tpisos}} -->
+              {{> tpisos3}}
           </div>
         </div>
       </div>
@@ -34,4 +33,22 @@
       {{> no_login}}
     {{/if}} -->
   </body>
+</template>
+
+<template name="tclientes3"> 
+  <h3>Clientes</h3>
+  <ul>{{#each mostrar}} 
+    <li class="cliente {{selectedClass}}">{{waka}}: </li>
+    {{/each}}
+    <button class="editcli">Editar cliente</button>
+    <button class="delcli">Borrar cliente</button>
+  </ul>
+  <button class="addcli">Añadir cliente</button>
+
+</template>
+
+<template name="tpisos3">
+  <h3>Pisos</h3>
+  <button>Soy Ralph</button>
+  <p>You've pressed the button {{counter}} times.</p>
 </template>

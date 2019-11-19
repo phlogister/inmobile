@@ -1,4 +1,4 @@
-<template name="clientes">
+<template name="agenda">
   <head>
       <title>{{title}}</title>
   </head>
@@ -10,16 +10,16 @@
     <div class="ui segment">
       <div class="sixteen wide column">
         <h1 class="ui dividing header">
-          <i class="address book icon"></i> Clientes
+          <i class="calendar alternate icon"></i> Agenda
           <!-- {{_ "Menú principal"}} -->
         </h1>
         <!-- <div class="ui hidden divider"></div> -->
         <div class="ui center aligned grid">
           <div class="eight wide column">
-              {{> tclientes2}}
+              {{> tclientes}}
           </div>
           <div class="eight wide column">
-              {{> tpisos2}}
+              {{> tpisos}}
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
   </body>
 </template>
 
-<template name="tclientes2"> 
+<template name="tclientes"> 
   <h3>Clientes</h3>
   <ul>{{#each mostrar}} 
     <li class="cliente {{selectedClass}}">{{waka}}: </li>
@@ -42,7 +42,7 @@
 
 </template>
 
-<template name="tpisos2">
+<template name="tpisos">
   <h3>Pisos</h3>
   <button>Soy Ralph</button>
   <p>You've pressed the button {{counter}} times.</p>

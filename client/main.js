@@ -1,16 +1,18 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import { Pisos } from '../both/collections';
+//import { Usuarios } from '../both/collections';
 import { Clientes } from '../both/collections';
+import { Pisos } from '../both/collections';
 
-import './main.html';
-import './views/menu.html';
-import './views/clientes.html';
+// import './main.html';
+// import './views/menu.html';
+// import './views/clientes.html';
 
 //VERY IMPORTANTE!! para testing
-window.Pisos = Pisos;
+// window.Usuarios = Usuarios;
 window.Clientes = Clientes;
+window.Pisos = Pisos;
 //******************************
 
 /* //Pantalla Login
@@ -34,37 +36,13 @@ Meteor.startup(function () {
   Router.configure({
     //layoutTemplate: 'main'
   });
-
-  Router.route('/', function () {
-    this.render('main', {
-    //this.render('Home', {
-      //data: function () { return Items.findOne({_id: this.params._id}); }
-    });
-  });
-    //this.render('main');
-  //});
-  
-  Router.route('/clientes', function () {
-    //this.render('clientes');
-  });
-
-});
 */
 
-/* //Router.js
-Router.configure({
-  layoutTemplate: 'layout'
-});
-Router.route('/thankyou', function() {
-  this.render('thankyou')
-});
+// Template.main.onCreated(function() {
+//   this.autorun(() => {
 
-Router.route('/', function () {
-  this.render('Home', {
-    data: function () { return true }
-  });
-});
-*/
+//   });
+// });
 
 
 Template.main.onRendered(function () {
@@ -75,6 +53,15 @@ Template.main.events({
   /*'click #homeSidebarToggle': function(ev){
     $('#homeSidebar').sidebar('toggle');
   }*/
+});
+
+Template.main.helpers({
+  //'mostrar': function(){
+    mostrar(){
+    // return Clientes.find({});//.fetch();
+    //a.push ({ address: Meteor.user().emails[0].address, name: Meteor.user().profile.name });
+    return Meteor.user().emails[0].address;
+  },
 });
 
 Template.tclientes.helpers({
@@ -109,6 +96,33 @@ Template.tpisos.events({
   }
 });
 
+//Example user document:
+// {
+//   _id: "bbca5d6a-2156-41c4-89da-0329e8c99a4f",  // Meteor.userId()
+//   username: "cool_kid_13", // unique name
+//   emails: [
+//     // each email address can only belong to one user.
+//     { address: "cool@example.com", verified: true },
+//     { address: "another@different.com", verified: false }
+//   ],
+//   createdAt: 1349761684042,
+//   profile: {
+//     // The profile is writable by the user by default.
+//     name: "Joe Schmoe"
+//   },
+//   services: {
+//     facebook: {
+//       id: "709050", // facebook id
+//       accessToken: "AAACCgdX7G2...AbV9AZDZD"
+//     },
+//     resume: {
+//       loginTokens: [
+//         { token: "97e8c205-c7e4-47c9-9bea-8e2ccc0694cd",
+//           when: 1349761684048 }
+//       ]
+//     }
+//   }
+// }
 
 /* Default templates*/
 /*

@@ -1,13 +1,14 @@
 <template name="menu">
   <!-- <div class="ui stackable container menu"> -->
   <div class="ui top attached tabular inverted menu"> <!--inverted -->
-    <a class="item inactive"> <!-- active -->
+    <a class="item inactive Mmain"> <!-- active -->
       <i class="align justify icon"></i>
+      <!-- calendar alternate icon -->
     </a>
     <!-- Taratura/Info/Noticias/Valoracion/Encargo/Publicidad/Pedido/Oficina/Email/Global -->
-    <a class="item">Calendario</a>
-    <a class="item">Clientes</a> <!-- SubMs: Info -->
-    <a class="item">Taraturas</a> <!-- SubMs: Info, Valoración, ¿Encargos? ¿Pedidos? -->
+    <a class="item Magenda">Agenda</a>
+    <a class="item Mclient">Clientes</a> <!-- SubMs: Info -->
+    <a class="item Mtaraturas">Taraturas</a> <!-- SubMs: Info, Valoración, ¿Encargos? ¿Pedidos? -->
     <a class="item">Encargos</a>
     <a class="item">Pedidos</a>
     <a class="item">Noticias</a>
@@ -18,8 +19,17 @@
     <a class="item">Global</a>
     <a class="item">Control de Oficina</a>
     <div class="right item"> <!--  href="#" -->
-      <div class="ui primary button">Registrarse</div>
-      <div class="ui button">Iniciar sesión</div>
+      <!-- <div class="ui primary button">Registrarse</div> -->
+      {{#if currentUser}}
+        <div class="ui primary button CloSession">Cerrar sesión</div>
+      {{else}}
+        <div class="ui primary button IniSession">Iniciar sesión</div>
+      {{/if}}
     </div>
   </div>
+</template>
+
+<template name="no_login">
+  <br><br><br><br>
+  <p><h1>Necesitas iniciar sesión....</h1></p>
 </template>

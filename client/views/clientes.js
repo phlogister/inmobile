@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 
-import { Pisos } from '../both/collections';
-import { Clientes } from '../both/collections';
+import { Pisos } from '../../both/collections';
+import { Clientes } from '../../both/collections';
 
 //import './main.html';
 //import './views/menu.html';

@@ -1,11 +1,20 @@
 # Inmobile - Notas
 -----------------------------------------------------------------
 ## 1. .meteor/packages
-### Incluir:
-+ meteor add clinical:router -> var current = Iron.Location.get();
+### Incluir (meteor add):
++ clinical:router -> var current = Iron.Location.get();
   > https://github.com/clinical-meteor/router
   > http://iron-meteor.github.io/iron-router/
 + semantic:ui (meteor integration)
++ session
++ accounts-password
+  > http://meteortips.com/first-meteor-tutorial/accounts/
++ accounts-ui
++ bcrypt
+- accounts-base
+  > https://guide.meteor.com/accounts.html
+  > https://docs.meteor.com/api/accounts.html
+- accounts:unstyled 
 - tap:i18n
 - tap:i18n-db
 - tap:i18n-ui
@@ -23,6 +32,7 @@
 - force-ssl
 - kepler.gl
   > https://github.com/keplergl/kepler.gl
+  > https://github.com/keplergl/kepler.gl/blob/master/docs/user-guides/a-introduction.md
   > https://kepler.gl/
 
 ### Casi q no:

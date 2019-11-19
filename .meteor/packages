@@ -23,3 +23,6 @@ less
 juliancwirko:postcss
 jquery
 clinical:router
+session
+accounts-password
+accounts-ui
