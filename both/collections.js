@@ -11,3 +11,34 @@ export const Pisos = new Mongo.Collection('pisos');
 // \-> Añadir, Editar, Eliminar
 // \-> J: Direccion, Propietario/s, nºfinca/Registro, m2, n_habs, baños, cocina, parking, ascensor, altura (ej: 7mo de 8: [7/8]), año, tipo,
 //        comentarios_clientes (ref cruzada), notas, Global
+//Encargo: Contrato sobre propiedad (Cliente y Piso)
+//Pedido: Busca propiedad (Cliente)
+
+
+//Noticias
+//\-> Cliente/s
+
+//Publicidad
+
+//Mensajes
+
+//Global
+
+//Control Oficina
+//- crear/eliminar/editar usuario
+
+//MAPA
+
+//PERFILES USUARIO
+//-Comercial (LW:Agenda, Taratura)
+//-Asesor (L: Agenda, W: Taratura, Noticias, Encargos)
+//-Coordinadora
+//-Gerente/Franquiciado
+
+//Usuario (id,email,pass)
+//Oficina, Perfil, NombreAp, Tlfnos {}, Direccion?, DNI?
+
+//OFICINA?? -> a mano
+// \-> Nombre/Direccion, Codigo?
+
+//RELACIONES DE MUCHOS {}
