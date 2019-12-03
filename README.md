@@ -41,6 +41,21 @@
 - moment
 - moment-timezone
 - mssql
+
+### Iconos:
+- newspaper outline (noticias/publicidad?)
+- comment (noticias?)
+- download (backup)
+- wrench/cog (Control Oficina)
+- building (Taraturas)
+- home (encargos?)
+- book (pedidos?)
+- globe (Global)
+- map/map marker alternate/compass (Mapa)
+- bullhorn, key, info, archive, file alternate[ outline], pencil alternate, comment, euro sign, bell, bell slash, money bill alternate outline
+- eye, ban, id badge, id card, users
+- rebel, empire, first order, linux, node js, docker, 
+
 -----------------------------------------------------------------
 ## 2. Módulos
 - Semantic UI

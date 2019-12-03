@@ -4,7 +4,7 @@ Router.route('/', function () {
   // this.layout('ApplicationLayout');
   if (Meteor.userId()) {
     this.render('main', {
-      title: "iNmobile",
+      title: "iNmobile - Datos de Cuenta",
     });
   }
   else {

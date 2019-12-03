@@ -3,7 +3,7 @@ import { ReactiveVar } from 'meteor/reactive-var';
 
 //import { Usuarios } from '../both/collections';
 import { Clientes } from '../both/collections';
-import { Pisos } from '../both/collections';
+import { Taraturas } from '../both/collections';
 
 // import './main.html';
 // import './views/menu.html';
@@ -12,7 +12,7 @@ import { Pisos } from '../both/collections';
 //VERY IMPORTANTE!! para testing
 // window.Usuarios = Usuarios;
 window.Clientes = Clientes;
-window.Pisos = Pisos;
+window.Taraturas = Taraturas;
 //******************************
 
 /* //Pantalla Login
@@ -64,37 +64,37 @@ Template.main.helpers({
   },
 });
 
-Template.tclientes.helpers({
-  'mostrar': function(){
-    return Clientes.find({});//.fetch();
-  },
-  'selectedClass': function(){
-    var clientId = this._id;
-    var selectedClient = Session.get('selectedClient');
-    if(clientId == selectedClient){
-        return "selected"
-    }
-  }
-});
+// Template.tclientes.helpers({
+//   'mostrar': function(){
+//     return Clientes.find({});//.fetch();
+//   },
+//   'selectedClass': function(){
+//     var clientId = this._id;
+//     var selectedClient = Session.get('selectedClient');
+//     if(clientId == selectedClient){
+//         return "selected"
+//     }
+//   }
+// });
 
-Template.tclientes.events({
-  'click .cliente': function(){
-    var clientId = this._id;
-    Session.set('selectedClient', clientId);
-  }
-});
+// Template.tclientes.events({
+//   'click .cliente': function(){
+//     var clientId = this._id;
+//     Session.set('selectedClient', clientId);
+//   }
+// });
 
-Template.tpisos.helpers({
-  'mostrar': function(){
-    return Pisos.find();
-  }
-});
+// Template.tpisos.helpers({
+//   'mostrar': function(){
+//     return Pisos.find();
+//   }
+// });
 
-Template.tpisos.events({
-  'click': function(){
-    // code goes here
-  }
-});
+// Template.tpisos.events({
+//   'click': function(){
+//     // code goes here
+//   }
+// });
 
 //Example user document:
 // {

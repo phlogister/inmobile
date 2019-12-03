@@ -60,7 +60,8 @@
           "order": 1,
           "permission": "dashboard",
           "layout": "mainLayoutFullPage",
-          "waitOnFunc": "waitDashboard"
+          "waitOnFunc": "waitDashboard",
+          "showFooter": true
         },
           {
             "linkName": "srh",

@@ -16,10 +16,10 @@
         <!-- <div class="ui hidden divider"></div> -->
         <div class="ui center aligned grid">
           <div class="eight wide column">
-              {{> tclientes}}
+              {{> tclientes2}}
           </div>
           <div class="eight wide column">
-              {{> tpisos}}
+              {{> tpisos2}}
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
   </body>
 </template>
 
-<template name="tclientes"> 
+<template name="tclientes2"> 
   <h3>Clientes</h3>
   <ul>{{#each mostrar}} 
     <li class="cliente {{selectedClass}}">{{waka}}: </li>
@@ -42,7 +42,7 @@
 
 </template>
 
-<template name="tpisos">
+<template name="tpisos2">
   <h3>Pisos</h3>
   <button>Soy Ralph</button>
   <p>You've pressed the button {{counter}} times.</p>
