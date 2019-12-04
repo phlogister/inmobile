@@ -57,10 +57,13 @@ Template.main.events({
 
 Template.main.helpers({
   //'mostrar': function(){
-    mostrar(){
+  mostrar(){
     // return Clientes.find({});//.fetch();
     //a.push ({ address: Meteor.user().emails[0].address, name: Meteor.user().profile.name });
     return Meteor.user().emails[0].address;
+  },
+  oficina(){
+    return 1134;//Meteor.user().cod_oficina;
   },
 });
 

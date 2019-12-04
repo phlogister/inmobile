@@ -1,6 +1,7 @@
 <template name="clientes">
   <head>
       <title>{{title}}</title>
+      <!-- <title>WAKAAAAAAAAAAAAAAAAAAAAA</title> -->
   </head>
   
   <body>
@@ -13,18 +14,38 @@
           <i class="address book icon"></i> Clientes
           <!-- {{_ "Menú principal"}} -->
         </h1>
-        <!-- <div class="ui hidden divider"></div> -->
         <div class="ui center aligned grid">
           <div class="three wide column left aligned">
-              {{> tclientesList}}
-              <!-- {{> tclientesAdd}} -->
+              <!-- <Segment style={{overflow: 'auto', maxHeight: 200 }}> -->
+                {{> tclientesList}}
+              <!-- </Segment> -->
           </div>
-          <div class="three wide column left aligned">
-              {{> tclientesAdd}}
-          </div>
-          <div class="ten wide column left aligned"> 
+          <div class="one wide column center aligned"></div>
+          <div class="twelve wide column left aligned"> 
+            <div class="ui menu top">
+              <a class="item" data-tab="list"><h4>Listar</h4></a>
+              <a class="item" data-tab="detail"><h4>Detalles</h4></a>
+              <a class="item" data-tab="edit"><h4>Editar</h4></a>
+              <a class="item" data-tab="insert"><h4>Insertar</h4></a>
+            </div>
+            <div class="ui tab" data-tab="list">
+            </div>
+            <div class="ui tab" data-tab="detail">
+                {{> tclientesShow}}
+              <!-- <div class="ui form">
+                <div class="two fields">
+                  <div class="field"><label>First Name</label><input type="text" /></div>
+                    <div class="field"><label>Last Name</label><input type="text" /></div>
+                </div> -->
+            </div>
+            <div class="ui tab" data-tab="edit">
               {{> tclientesEdit}}
+            </div>
+            <div class="ui tab" data-tab="insert">
+              {{> tclientesAdd}}
+            </div>
           </div>
+          <!-- <div class="eight wide column left aligned"></div> -->
         </div>
       </div>
     </div>
@@ -40,32 +61,41 @@
     <li class="cliente {{selectedClass}}">{{lnamef}}, {{name}}</li>
     {{/each}}
   </ul>
-  <button class="editcli">Editar cliente</button>
+  <button class="seekcli">Buscar cliente</button>
   <button class="delcli">Borrar cliente</button>
-
 </template>
 
+<template name="tclientesShow">
+  <h3>Cliente - Detalles</h3>
+  <div id="clientesShow">
+    {{mostrar}}
+  </div>
+</template>
+  
+
 <template name="tclientesAdd">
-  <h3>Clientes - Añadir</h3>
+  <h3>Cliente - Insertar</h3>
   <form>
+      Documento de Identidad*:<br><input type="text" name="clientDocId" required><br>
       Nombre*:<br><input type="text" name="clientName" required><br>
       Apellido1*:<br><input type="text" name="clientLname" required><br>
-      Apellido2*:<br><input type="text" name="clientLname2"><br>
-      Documento de Identidad*:<br><input type="text" name="clientDocId" required><br>
+      Apellido2:<br><input type="text" name="clientLname2"><br>
       Teléfono1*:<br><input type="text" name="clientTlfno1" required><br>
       Teléfono2:<br><input type="text" name="clientTlfno2"><br>
       Dirección*:<br><input type="text" name="clientDir" required><br>
       CP*:<br><input type="text" name="clientCP" required><br>
       Ciudad*:<br><input type="text" name="clientCity" required><br>
       <br>* Campos obligatorios<br>
-      <input type="submit" value="Añadir cliente">
+      <input type="submit" value="Insertar cliente">
   </form>
   <!-- <button class="addcli">Añadir cliente</button> -->
 </template>
 
 <template name="tclientesEdit">
-    <h3>Clientes - Editar</h3>
-    <div id="clientesEdit">
-      {{mostrar}}
-    </div>
-  </template>
+  <h3>Cliente - Editar</h3>
+  <div id="clientesEdit">
+    {{mostrar}}
+  </div>
+</template>
+
+<!-- Tabs: Detalles | Añadir | Editar | Borrar -->

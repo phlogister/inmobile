@@ -1,4 +1,4 @@
-export const Usuarios = new Mongo.Collection('usuarios');
+// export const Usuarios = new Mongo.Collection('usuarios');
 export const Clientes = new Mongo.Collection('clientes');
 export const Taraturas = new Mongo.Collection('taraturas');
 
@@ -18,11 +18,11 @@ export const Taraturas = new Mongo.Collection('taraturas');
 //Noticias
 //\-> Cliente/s
 
-//Publicidad
+//Publicidad <- eliminar
 
-//Mensajes
+//Mensajes <- eliminar (slack/email)
 
-//Global
+//Global <- Encargos que solo pueden ver Franquiciados y Gerentes (editar dueño(usuario q lo crea)??)
 
 //Control Oficina
 //- crear/eliminar/editar usuario
@@ -30,15 +30,16 @@ export const Taraturas = new Mongo.Collection('taraturas');
 //MAPA
 
 //PERFILES USUARIO
-//-Comercial (LW:Agenda, Taratura)
-//-Asesor (L: Agenda, W: Taratura, Noticias, Encargos)
-//-Coordinadora
-//-Gerente/Franquiciado
+//-Comercial (LW:Agenda, Taratura)                      }
+//-Asesor (L: Agenda, W: Taratura, Noticias, Encargos)  } Crear
+//-Gerente (Todo)                                       } No ¿pwd? (borrar?)
+//-Franquiciado (Todo y Edición)                        }
+//-Coordinadora (Agenda, Pedidos) (Publicidad: Web Elena, Mensajes: Slack)
 
 //Usuario (id,email,pass)
-//Oficina, Perfil, NombreAp, Tlfnos {}, Direccion?, DNI?
+// \-> Oficina, Perfil, NombreAp, Tlfnos {}, Direccion?, DNI?
 
-//OFICINA?? -> a mano
-// \-> Nombre/Direccion, Codigo?
+//Oficina (id) -> a mano
+// \-> Nombre/Direccion, CP, Codigo?
 
 //RELACIONES DE MUCHOS {}

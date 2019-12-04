@@ -6,10 +6,16 @@
   > https://github.com/clinical-meteor/router
   > http://iron-meteor.github.io/iron-router/
 + semantic:ui (meteor integration)
+  > https://semantic-ui.com/modules/tab.html#/definition
+  > https://semantic-ui.com/behaviors/visibility.html#/introduction
 + session
 + accounts-password
   > http://meteortips.com/first-meteor-tutorial/accounts/
 + accounts-ui
+  > https://docs.meteor.com/api/accounts.html#Accounts-ui-config
+  > https://guide.meteor.com/accounts.html#useraccounts
+  > https://github.com/meteor-useraccounts/core/blob/master/Guide.md#content-protection
+  > https://stackoverflow.com/questions/23507384/adding-more-fields-to-meteor-user-accounts
 + bcrypt
 - accounts-base
   > https://guide.meteor.com/accounts.html
@@ -34,6 +40,9 @@
   > https://github.com/keplergl/kepler.gl
   > https://github.com/keplergl/kepler.gl/blob/master/docs/user-guides/a-introduction.md
   > https://kepler.gl/
+- gmaps:
+  > https://github.com/googlemaps/google-maps-services-js
+  > https://developers.google.com/maps/web-services/client-library
 
 ### Casi q no:
 - nconf -> buscar info
@@ -55,6 +64,13 @@
 - bullhorn, key, info, archive, file alternate[ outline], pencil alternate, comment, euro sign, bell, bell slash, money bill alternate outline
 - eye, ban, id badge, id card, users
 - rebel, empire, first order, linux, node js, docker, 
+
+### Input form:
+  > https://zellwk.com/blog/check-empty-input-js/
+  > https://www.npmjs.com/package/validate-phone-number-node-js
+  > https://www.npmjs.com/package/phone
+  > https://stackoverflow.com/questions/18375929/validate-phone-number-using-javascript
+  > https://www.w3resource.com/javascript/form/phone-no-validation.php
 
 -----------------------------------------------------------------
 ## 2. Módulos

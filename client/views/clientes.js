@@ -18,37 +18,44 @@ function CapsFirst(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+Template.clientes.onRendered(function () {
+  this.$('.top.menu .item').tab();
+  // $('.top.menu .item').tab();
+});
+
 Template.tclientesList.helpers({
   'mostrar': function(){
-    return Clientes.find({}, { sort: {lname: 1}});//.fetch();
+    return Clientes.find({}, { sort: {lname: 1, lname2: 1, name: 1}});//.fetch();
   },
-  'apps': function(elem){ //REVISAAAAARRR
-    return elem.lname + " " + elem.lname2
-    //lname}}{{lname2
-  },
+  // <Segment style={{overflow: 'auto', maxHeight: 200 }}> //<-SCROLL
+  // </Segment>
+
+  // 'apps': function(elem){ //REVISAAAAARRR
+  //   return elem.lname + " " + elem.lname2
+  //   //lname}}{{lname2
+  // },
   'selectedClass': function(){
-    var clientId = this._id;
-    var selectedClient = Session.get('selectedClient');
+    let clientId = this._id;
+    let selectedClient = Session.get('selectedClient');
     if(clientId == selectedClient){
       return "selected"
     }
-  }
+  },
 });
 
 Template.tclientesEdit.helpers({
   'mostrar': function(){
     //console.log(Meteor.userId());
-    var selectedClient = Session.get('selectedClient');
+    let selectedClient = Session.get('selectedClient');
     if (selectedClient){
-      cli = Clientes.findOne({_id: selectedClient});//.name;
-      //console.log(cosa.name);
+      cli = Clientes.findOne({_id: selectedClient});
       form = `<form>
+      Documento de Identidad*:<br><input type="text" name="clientDocId" value="${cli.docid}" required><br>
       Nombre*:<br><input type="text" name="clientName" value="${cli.name}" required><br>
       Apellido1*:<br><input type="text" name="clientLname" value="${cli.lname}" required><br>
-      Apellido2*:<br><input type="text" name="clientLname2"value="${cli.lname2}"><br>
-      Documento de Identidad*:<br><input type="text" name="clientDocId" value="${cli.docid}" required><br>
+      Apellido2:<br><input type="text" name="clientLname2" value="${cli.lname2}"><br>
       Teléfono1*:<br><input type="text" name="clientTlfno1" value="${cli.tlfno1}" required><br>
-      Teléfono2:<br><input type="text" name="clientTlfno2 value="${cli.tlfno2}"><br>
+      Teléfono2:<br><input type="text" name="clientTlfno2" value="${cli.tlfno2}"><br>
       Dirección*:<br><input type="text" name="clientDir" value="${cli.direccion}" required><br>
       CP*:<br><input type="text" name="clientCP" value="${cli.cp}" required><br>
       Ciudad*:<br><input type="text" name="clientCity" value="${cli.city}" required><br>
@@ -58,22 +65,47 @@ Template.tclientesEdit.helpers({
       $('#clientesEdit').html(form);
       //return form;
     }
-    else{
+    // else{
+    // }
+  },
+});
 
+Template.tclientesShow.helpers({
+  'mostrar': function(){
+    //console.log(Meteor.userId());
+    let selectedClient = Session.get('selectedClient');
+    if (selectedClient){
+      cli = Clientes.findOne({_id: selectedClient});
+      form = `<form>
+      Documento de Identidad:<br><input type="text" name="clientDocId" value="${cli.docid}" readonly><br>
+      Nombre:<br><input type="text" name="clientName" value="${cli.name}" readonly><br>
+      Apellido1:<br><input type="text" name="clientLname" value="${cli.lname}" readonly><br>
+      Apellido2:<br><input type="text" name="clientLname2" value="${cli.lname2}" readonly><br>
+      Teléfono1:<br><input type="text" name="clientTlfno1" value="${cli.tlfno1}" readonly><br>
+      Teléfono2:<br><input type="text" name="clientTlfno2" value="${cli.tlfno2}" readonly><br>
+      Dirección:<br><input type="text" name="clientDir" value="${cli.direccion}" readonly><br>
+      CP:<br><input type="text" name="clientCP" value="${cli.cp}" readonly><br>
+      Ciudad:<br><input type="text" name="clientCity" value="${cli.city}" readonly><br>
+      </form>`;
+      $('#clientesShow').html(form);
     }
   },
 });
 
 Template.tclientesList.events({
   'click .cliente': function(){
-    var clientId = this._id;
+    let clientId = this._id;
     //console.log(clientId);
     Session.set('selectedClient', clientId);
   },
   'click .delcli': function(){
-    var clientId = Session.get('selectedClient');
+    let clientId = Session.get('selectedClient');
     //console.log(clientId);
-    Clientes.remove({ _id: clientId });
+    let confirmar = confirm("¿Está seguro de borrar este cliente?");
+    if (confirmar){
+      Clientes.remove({ _id: clientId });  //PREPARAR LOG??
+      alert("Cliente borrado."); 
+    }
   },
   //'submit form': function(event){
 });
@@ -81,80 +113,98 @@ Template.tclientesList.events({
 Template.tclientesAdd.events({
   'submit form': function(event){
     event.preventDefault();
-    var cliNameVar = event.target.clientName.value.trim();
-    var cliLnameVar = event.target.clientLname.value.trim();
-    var cliLnameVar2 = event.target.clientLname2.value.trim();
+    let cliNameVar = event.target.clientName.value.trim();
+    let cliLnameVar = event.target.clientLname.value.trim();
+    let cliLnameVar2;
+    let cliTlfnoVar2;
+    let cliLnamefVar;
 
     cliNameVar  = CapsFirst(cliNameVar.toLowerCase());
     cliLnameVar = CapsFirst(cliLnameVar.toLowerCase());
-    cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
+    cliLnameVar2 = event.target.clientLname2.value.trim();
+
+    if ((cliLnameVar2 === "undefined") || (cliLnameVar2 == "")) {
+      cliLnameVar2 = "";
+      cliLnamefVar = cliLnameVar;
+    }
+    else{
+      cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
+      cliLnamefVar = cliLnameVar + " " + cliLnameVar2;
+    }
+    if (event.target.clientTlfno2.value === "undefined"){
+      cliTlfnoVar2 = "";
+    }
+    else{
+      cliTlfnoVar2 = event.target.clientTlfno2.value.trim();
+    }
 
     Clientes.insert({
         name: cliNameVar,
         lname: cliLnameVar,
         lname2: cliLnameVar2,
-        lnamef: cliLnameVar + " " + cliLnameVar2, //REVISAR
-        docid: event.target.clientDocId.value,
-        tlfno1: event.target.clientTlfno1.value,
-        tlfno2: event.target.clientTlfno2.value,
-        direccion: event.target.clientDir.value,
-        cp: event.target.clientCP.value,
-        city: event.target.clientCity.value,
-        //user: Meteor.userId(), //PREPARAR LOG??
+        lnamef: cliLnamefVar,
+        docid: event.target.clientDocId.value.trim(),
+        tlfno1: event.target.clientTlfno1.value.trim(),
+        tlfno2: cliTlfnoVar2,
+        direccion: event.target.clientDir.value.trim(),
+        cp: event.target.clientCP.value.trim(),
+        city: CapsFirst(event.target.clientCity.value.trim().toLowerCase()),
+        //oficina: Meteor.userId().ofi.id, <- invariable
+        //global???: true/false
+        //user_add: Meteor.userId(),
+        //created: tstamp,
     });
     alert("Cliente añadido");
-  }
+  },
 });
 
 Template.tclientesEdit.events({
   'submit form': function(event){
-    var clientId = Session.get('selectedClient', clientId);
+    let clientId = Session.get('selectedClient');
     //console.log(clientId);
     event.preventDefault();
-    var cliNameVar = event.target.clientName.value.trim();
-    var cliLnameVar = event.target.clientLname.value.trim();
-    var cliLnameVar2 = event.target.clientLname2.value.trim();
+    let cliNameVar = event.target.clientName.value.trim();
+    let cliLnameVar = event.target.clientLname.value.trim();
+    let cliLnameVar2;
+    let cliTlfnoVar2;
+    let cliLnamefVar;
 
     cliNameVar  = CapsFirst(cliNameVar.toLowerCase());
     cliLnameVar = CapsFirst(cliLnameVar.toLowerCase());
-    cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
+    cliLnameVar2 = event.target.clientLname2.value.trim();
 
-    if (event.target.clientTlfno2 == null){ //REVISAR EL IF POR EL TLFNO2
-      Clientes.update(clientId, { //clientId
-        $set: {
-          name: cliNameVar,
-          lname: cliLnameVar,
-          lname2: cliLnameVar2,
-          lnamef: cliLnameVar + " " + cliLnameVar2, //REVISAR
-          docid: event.target.clientDocId.value,
-          tlfno1: event.target.clientTlfno1.value,
-          //tlfno2: event.target.clientTlfno2.value,
-          direccion: event.target.clientDir.value,
-          cp: event.target.clientCP.value,
-          city: event.target.clientCity.value,
-          //user: Meteor.userId(), //PREPARAR LOG??
-        }
-      });
-      alert("Cliente actualizado");
+    if ((cliLnameVar2 === "undefined") || (cliLnameVar2 == "")) {
+      cliLnameVar2 = "";
+      cliLnamefVar = cliLnameVar;
     }
     else{
-      Clientes.update(clientId, { //clientId
-        $addToSet: {
-          name: cliNameVar,
-          lname: cliLnameVar,
-          lname2: cliLnameVar2,
-          lnamef: cliLnameVar + " " + cliLnameVar2, //REVISAR
-          docid: event.target.clientDocId.value,
-          tlfno1: event.target.clientTlfno1.value,
-          tlfno2: event.target.clientTlfno2.value,
-          direccion: event.target.clientDir.value,
-          cp: event.target.clientCP.value,
-          city: event.target.clientCity.value,
-          //user: Meteor.userId(), //PREPARAR LOG??
-        }
-      });
-      alert("Cliente actualizado");
-
+      cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
+      cliLnamefVar = cliLnameVar + " " + cliLnameVar2;
     }
-  }
+    if (event.target.clientTlfno2.value === "undefined"){
+      cliTlfno2 = "";
+    }
+    else{
+      cliTlfnoVar2 = event.target.clientTlfno2.value.trim();
+    }
+
+    Clientes.update(clientId, {
+      //$addToSet: {
+      $set: {
+        name: cliNameVar,
+        lname: cliLnameVar,
+        lname2: cliLnameVar2,
+        lnamef: cliLnamefVar,
+        docid: event.target.clientDocId.value.trim(),
+        tlfno1: event.target.clientTlfno1.value.trim(),
+        tlfno2: cliTlfnoVar2,
+        direccion: event.target.clientDir.value.trim(),
+        cp: event.target.clientCP.value.trim(),
+        city: CapsFirst(event.target.clientCity.value.trim().toLowerCase()),
+        //user_mod: Meteor.userId(),
+        //modified: tstamp,
+      }
+    });
+    alert("Cliente actualizado");
+  },
 });
