@@ -155,6 +155,7 @@ Template.tclientesAdd.events({
         //created: tstamp,
     });
     alert("Cliente añadido");
+    document.getElementById("formAdd").reset();
   },
 });
 
