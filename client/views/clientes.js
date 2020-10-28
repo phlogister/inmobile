@@ -18,14 +18,14 @@ function CapsFirst(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-Template.clientes.onRendered(function () {
+Template.clientes.onRendered(function (){
   this.$('.top.menu .item').tab();
   // $('.top.menu .item').tab();
 });
 
 Template.tclientesList.helpers({
   'mostrar': function(){
-    return Clientes.find({}, { sort: {lname: 1, lname2: 1, name: 1}});//.fetch();
+    return Clientes.find({}, { sort: {lname: 1, lname2: 1, name: 1 }} );//.fetch();
   },
   // <Segment style={{overflow: 'auto', maxHeight: 200 }}> //<-SCROLL
   // </Segment>
@@ -127,14 +127,14 @@ Template.tclientesAdd.events({
       cliLnameVar2 = "";
       cliLnamefVar = cliLnameVar;
     }
-    else{
+    else {
       cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
       cliLnamefVar = cliLnameVar + " " + cliLnameVar2;
     }
-    if (event.target.clientTlfno2.value === "undefined"){
+    if (event.target.clientTlfno2.value === "undefined") {
       cliTlfnoVar2 = "";
     }
-    else{
+    else {
       cliTlfnoVar2 = event.target.clientTlfno2.value.trim();
     }
 
@@ -178,14 +178,14 @@ Template.tclientesEdit.events({
       cliLnameVar2 = "";
       cliLnamefVar = cliLnameVar;
     }
-    else{
+    else {
       cliLnameVar2 = CapsFirst(cliLnameVar2.toLowerCase());
       cliLnamefVar = cliLnameVar + " " + cliLnameVar2;
     }
-    if (event.target.clientTlfno2.value === "undefined"){
+    if (event.target.clientTlfno2.value === "undefined") {
       cliTlfno2 = "";
     }
-    else{
+    else {
       cliTlfnoVar2 = event.target.clientTlfno2.value.trim();
     }
 

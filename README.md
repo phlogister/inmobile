@@ -20,7 +20,10 @@
 - accounts-base
   > https://guide.meteor.com/accounts.html
   > https://docs.meteor.com/api/accounts.html
-- accounts:unstyled 
+  > https://rurri.com/articles/Creating-a-custom-authentication-service-in-Meteor.html
+- accounts:unstyled
+- alanning:roles
+  > https://atmospherejs.com/alanning/roles
 - tap:i18n
 - tap:i18n-db
 - tap:i18n-ui
@@ -36,6 +39,9 @@
 - brentjanderson:buzz
 - meteor-ssl <- no cifra mongo entre cli-serv
 - force-ssl
+-Auth0:
+  > https://auth0.com/blog/developing-real-time-apps-with-meteor/
+  > https://auth0.com/docs/dashboard/reference/settings-api
 - kepler.gl
   > https://github.com/keplergl/kepler.gl
   > https://github.com/keplergl/kepler.gl/blob/master/docs/user-guides/a-introduction.md
@@ -65,12 +71,17 @@
 - eye, ban, id badge, id card, users
 - rebel, empire, first order, linux, node js, docker, 
 
-### Input form:
+### Implementacion:
+#### Subitems:
+  > https://stackoverflow.com/questions/30925665/add-subitems-to-meteor-document
+
+#### Input form:
   > https://zellwk.com/blog/check-empty-input-js/
   > https://www.npmjs.com/package/validate-phone-number-node-js
   > https://www.npmjs.com/package/phone
   > https://stackoverflow.com/questions/18375929/validate-phone-number-using-javascript
   > https://www.w3resource.com/javascript/form/phone-no-validation.php
+
 
 -----------------------------------------------------------------
 ## 2. Módulos
